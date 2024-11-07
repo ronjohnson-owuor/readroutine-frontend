@@ -12,7 +12,7 @@ const PricingCard = () => {
   ];
 
   return (
-    <div className="max-w-md mx-auto bg-lightFg rounded-lg shadow-md p-8">
+    <div className="max-w-md mx-auto bg-lightFg dark:bg-darkFg  rounded-lg shadow-md p-8">
       {/* Header */}
       <h2 className="text-2xl font-bold text-center mb-8">Choose Your Plan</h2>
 

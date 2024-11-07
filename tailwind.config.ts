@@ -12,7 +12,8 @@ const config: Config = {
       colors: {
         lightBg: "#F2F2F2",
         lightFg: "#FFFFFF",
-        mainColor:"#1ec74b",
+        mainColor:"#1ec775",
+        secondaryGreen:"#33cc66",
         darkBg:"#242932",
         darkFg:"#29303C"
       },
