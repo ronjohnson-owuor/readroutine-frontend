@@ -1,19 +1,43 @@
 "use client";
-import React from 'react';
+import api from '@/helpers/api';
+import { normalSignupObject, signupmessage } from '@/interfaces/accounts.interface';
+import React, { ReactEventHandler, useState } from 'react';
 import { IoLogoGoogle } from 'react-icons/io5';
 
 function Page() {
+  const [normal,setNormal] = useState<normalSignupObject>({username:'',password:'',email:''});
+  const [agreed,setAgreed] = useState(false);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNormal(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const normalSignin = async (e:React.MouseEvent) =>{
+    e.preventDefault();
+    if(!agreed){
+        alert("you must agree to the terms and conditions");
+        return;
+      }
+    const response:signupmessage = (await api.post("/users-api/normal-signin",normal)).data;
+    console.log(response);
+  }
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-lightBg dark:bg-darkBg text-lightText  dark:text-darkText  px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-lightFg dark:bg-darkFg shadow-md rounded-lg p-8">
         <h2 className="text-2xl font-semibold text-center   mb-6">Sign Up</h2>
-        <form autoComplete='off'  className="space-y-4">
+        <div   className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-sm font-medium ">Name</label>
             <input
+            onChange={(e)=>handleInputChange(e)}
               type="text"
               id="name"
-              name="name"
+              name="username"
               required
               className="mt-1 block w-full px-3 py-2 border rounded-md  focus:ring-maincolor focus:border-lightFg dark:border-darkFg"
             />
@@ -22,6 +46,7 @@ function Page() {
           <div>
             <label htmlFor="email" className="block text-sm font-medium ">Email</label>
             <input
+            onChange={(e)=>handleInputChange(e)}
               type="email"
               id="email"
               name="email"
@@ -33,6 +58,7 @@ function Page() {
           <div>
             <label htmlFor="password" className="block text-sm font-medium">Password</label>
             <input
+            onChange={(e)=>handleInputChange(e)}
               type="password"
               id="password"
               name="password"
@@ -45,6 +71,8 @@ function Page() {
             <input
               id="terms"
               type="checkbox"
+              onChange={()=>setAgreed(!agreed)}
+              checked={agreed}
               required
               className="h-4 w-4 text-maincolor focus:ring-maincolor border-gray-300 rounded"
             />
@@ -54,12 +82,13 @@ function Page() {
           </div>
           
           <button
+          onClick ={(e)=>normalSignin(e)}
             type="submit"
             className="w-full py-2 px-4 bg-mainColor text-white rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-maincolor"
           >
             Sign Up
           </button>
-        </form>
+        </div>
 
         <div className="mt-6 flex items-center justify-center">
           <p className="text-sm ">Or sign in with</p>
