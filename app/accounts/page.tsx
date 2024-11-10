@@ -1,7 +1,9 @@
 "use client";
 import api from '@/helpers/api';
+import Emojitoast from '@/helpers/Emojitoast';
 import { normalSignupObject, signupmessage } from '@/interfaces/accounts.interface';
 import React, { ReactEventHandler, useState } from 'react';
+import toast from 'react-hot-toast';
 import { IoLogoGoogle } from 'react-icons/io5';
 
 function Page() {
@@ -18,11 +20,23 @@ function Page() {
   const normalSignin = async (e:React.MouseEvent) =>{
     e.preventDefault();
     if(!agreed){
-        alert("you must agree to the terms and conditions");
+        toast(<Emojitoast emoji='⛔' message='agree to the terms and conditions'/>);
         return;
       }
-    const response:signupmessage = (await api.post("/users-api/normal-signin",normal)).data;
-    console.log(response);
+
+      try {
+        const response:signupmessage = (await api.post("/users-api/normal-signin",normal)).data;
+        if(response.proceed){
+        toast(<Emojitoast emoji='🎉' message={response.message}/>);  
+        }else{
+          toast(<Emojitoast emoji='🚫' message={response.message}/>); 
+        }   
+        console.log(response); 
+      } catch (error) {
+        console.log(`there was an error ${error}`);
+        toast(<Emojitoast emoji='🛠️' message={`error on our side we are trying to fix it.try again later ${error}`}/>); 
+      }
+
   }
 
 

@@ -25,7 +25,6 @@ function Page() {
 
   return (
     <div className='min-h-screen bg-lightBg dark:bg-darkBg'>
-
       <div className='w-[20%] mx-[40%] bg-lightFg dark:bg-darkFg  h-[60px] rounded-md mt-10 flex gap-4 items-center justify-evenly'>
         <Image className='cursor-pointer' src={logo} width={30} height={30} alt='logo'/>
         <h1 className='font-bold text-xl'>read routine</h1>
