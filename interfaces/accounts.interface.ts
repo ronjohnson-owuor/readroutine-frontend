@@ -13,3 +13,8 @@ export interface googleSignupObject{
     email:string,
     key:string,
 }
+
+export interface normalLogin {
+    email:string,
+    password:string,
+}

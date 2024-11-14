@@ -13,7 +13,7 @@ import useToken from "@/helpers/useToken";
 
 function Page() {
   const { data: session } = useSession();
-  const { isToken,encryptToken } = useToken();
+  const { isToken, encryptToken } = useToken();
   useEffect(() => {
     if (!isToken) {
       if (session?.token == null) {
@@ -53,6 +53,7 @@ function Page() {
         await api.post("/users-api/normal-signin", normal)
       ).data;
       if (response.proceed) {
+        encryptToken(response.token!);
         toast(<Emojitoast emoji="🎉" message={response.message} />);
       } else {
         toast(<Emojitoast emoji="🚫" message={response.message} />);
@@ -151,7 +152,10 @@ function Page() {
           onClick={() => {
             if (!agreed) {
               toast(
-                <Emojitoast emoji="⛔" message="agree to the terms and conditions" />
+                <Emojitoast
+                  emoji="⛔"
+                  message="agree to the terms and conditions"
+                />
               );
               return;
             }

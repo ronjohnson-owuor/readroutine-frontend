@@ -30,10 +30,8 @@ export const {
             user.token = null;
             user.message = response.data.message;
         }
-        console.log(response.data);
         return true;
       } catch (error) {
-        console.log("there was an error: " + error);
         return false;
       }
     },
