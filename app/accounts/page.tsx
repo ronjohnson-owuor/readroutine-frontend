@@ -21,8 +21,10 @@ function Page() {
         return;
       }
       const success = encryptToken(session.token);
-      window.location.href="/profile";
+      window.location.href = "/profile";
       success && toast(<Emojitoast emoji="🥳" message={session?.message!} />);
+    }else{
+      window.location.href = "/profile";
     }
   }, [session]);
 
@@ -55,7 +57,7 @@ function Page() {
       ).data;
       if (response.proceed) {
         encryptToken(response.token!);
-        window.location.href="/profile";
+        window.location.href = "/profile";
         toast(<Emojitoast emoji="🎉" message={response.message} />);
       } else {
         toast(<Emojitoast emoji="🚫" message={response.message} />);

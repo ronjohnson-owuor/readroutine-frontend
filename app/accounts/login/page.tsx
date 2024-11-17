@@ -27,6 +27,8 @@ function Page() {
         toast(<Emojitoast emoji="🥳" message={session?.message!} />);
         window.location.href="/profile"
       };
+    }else{
+      window.location.href = "/profile";
     }
   }, [session]);
 
@@ -39,7 +41,7 @@ function Page() {
       ).data;
       if (response.proceed) {
         encryptToken(response.token!);
-        toast(<Emojitoast emoji="🥳" message={session?.message!} />);
+        window.location.href="/profile";
         toast(<Emojitoast emoji="🎉" message={response.message} />);
       } else {
         toast(<Emojitoast emoji="🚫" message={response.message} />);
