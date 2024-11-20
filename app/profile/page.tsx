@@ -1,9 +1,11 @@
 "use client";
+import Articles from "@/components/Articles";
+import Mainfeature from "@/components/Mainfeature";
 import Navigation from "@/components/Navigation";
+import Profileactions from "@/components/Profileactions";
 import React from "react";
 import { AiOutlineHighlight } from "react-icons/ai";
 import { BiUpvote } from "react-icons/bi";
-import { CiBookmark, CiEdit } from "react-icons/ci";
 import { FaRegBookmark } from "react-icons/fa";
 import { FiUserPlus } from "react-icons/fi";
 import { LuBookOpenCheck } from "react-icons/lu";
@@ -34,10 +36,6 @@ const Page = () => {
                   alt="avatar" 
                 />
               </div>
-              <button className="w-full mt-2 px-3 py-2 bg-lightBg dark:bg-darkBg text-sm flex items-center justify-center gap-2 rounded-md transition-all hover:border-mainColor hover:border">
-                <CiEdit className="text-lg" />
-                <span>Change</span>
-              </button>
             </div>
 
             {/* User Details Section */}
@@ -45,6 +43,7 @@ const Page = () => {
               <h3 className="text-xl font-bold mb-1">Ronjohnson Owuor</h3>
               <p className="text-lightText text-sm dark:text-darkText">@jamestxs9900</p>
               <p className="text-lightText dark:text-darkText text-sm">joined 12.12.2024</p>
+              <p className="text-sm bg-green-100 dark:bg-secondaryGreen dark:text-white text-[11px] p-1 my-2 rounded-md w-24 text-center">free tier</p>
               <div className="flex gap-2 items-center justify-items-start rounded-md text-sm w-[150px] mt-1 text-mainColor ">
               <FiUserPlus /> <span>80K followers</span>
               </div>
@@ -70,6 +69,9 @@ const Page = () => {
           </div>
         </div>
       </div>
+      <Profileactions/>
+      <Mainfeature/>
+      <Articles/>
     </div>
   );
 };
