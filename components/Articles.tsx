@@ -45,10 +45,18 @@ function Articles() {
         </div>
       </div>
       <div>
-        <h1 className="text-md text-lightText dark:text-darkText font-bold mb-4">Articles</h1>
-        <span className="text-sm">summarize online blogs with ease and for future refrence.The website will also help you remember the articles you have read with ease through timed notificatins</span>
+        <h1 className="text-md text-lightText dark:text-darkText font-bold mb-4">
+          Articles
+        </h1>
+        <span className="text-sm">
+          summarize online blogs with ease and for future refrence.The website
+          will also help you remember the articles you have read with ease
+          through timed notificatins
+        </span>
         <div>
-          <button className="bg-mainColor hover:bg-secondaryGreen text-white w-[200px] h-[40px] mt-4 rounded-md">new article</button>
+          <button className="bg-mainColor hover:bg-secondaryGreen text-white w-[200px] h-[40px] mt-4 rounded-md">
+            new article
+          </button>
         </div>
       </div>
     </div>
