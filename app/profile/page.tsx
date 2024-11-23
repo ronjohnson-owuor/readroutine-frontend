@@ -6,7 +6,6 @@ import Profileactions from "@/components/Profileactions";
 import api from "@/helpers/api";
 import useToken from "@/helpers/useToken";
 import { userData } from "@/interfaces/accounts.interface";
-import { headers } from "next/headers";
 import React, { useEffect } from "react";
 import { AiOutlineHighlight } from "react-icons/ai";
 import { BiUpvote } from "react-icons/bi";
