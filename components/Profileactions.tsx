@@ -5,13 +5,14 @@ import { MdOutlineMarkEmailUnread } from "react-icons/md";
 
 interface prop {
   email_verified: boolean;
+  expiry:string;
 }
-function Profileactions({ email_verified }: prop) {
+function Profileactions({ email_verified,expiry }: prop) {
   return (
     <div className="w-[80%] min-h-[100px] p-4 bg-lightFg dark:bg-darkFg rounded-md mt-2 mx-auto">
       <h1 className="font-bold my-2 mb-1">action panel</h1>
       <p className="text-mainColor text-[12px] my-1">
-        free tier ends on: 12.12.2025
+        free tier ends on: {expiry}
       </p>
       <div className="grid grid-cols-6 mt-2  w-full h-[60px]">
         <button className="w-[150px]  bg-lightBg dark:bg-darkBg text-sm flex items-center justify-center gap-2 rounded-md transition-all hover:border-mainColor hover:border h-[40px]">

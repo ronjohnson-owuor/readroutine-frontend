@@ -21,7 +21,8 @@ export interface normalLogin {
 
 export interface userData {
         "proceed": boolean,
-        "user": user
+        "user": user,
+        user_data:user_data
 }
 
 export interface user {
@@ -32,4 +33,10 @@ export interface user {
     "profile_url": string,
     "createdAt": string,
     "updatedAt":string|null
+}
+
+export interface user_data{
+    "nickname":string,
+    "tier": number,
+    "expiry_date": string
 }

@@ -3,7 +3,9 @@ import Articles from "@/components/Articles";
 import Mainfeature from "@/components/Mainfeature";
 import Navigation from "@/components/Navigation";
 import Profileactions from "@/components/Profileactions";
+import Profileedit from "@/components/Profileedit";
 import api from "@/helpers/api";
+import date_joined from "@/helpers/dateformatter";
 import useToken from "@/helpers/useToken";
 import { userData } from "@/interfaces/accounts.interface";
 import React, { useEffect } from "react";
@@ -20,6 +22,7 @@ const Page = async () => {
       window.location.href = "/accounts/login";
       return;
     }
+    console.log(decrypted);
   }, [isToken]);
 
 
@@ -34,19 +37,9 @@ const Page = async () => {
       Authorization: `Bearer ${decrypted}`,
     },
   }).then(data => data.data);
-  const date_joined = () =>{
-    const isoDate = new Date(user.user.createdAt);
-    const formattedDate = isoDate.toLocaleString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true,
-    });
-    return formattedDate;
-  }
+
+  const joined = date_joined(user.user.createdAt);
+  const expiry = date_joined(user.user_data.expiry_date);
 
   return (
     <div>
@@ -72,13 +65,13 @@ const Page = async () => {
             <div className="flex-1 pt-2 w-[200px]">
               <h3 className="text-xl font-bold mb-1">{user.user.username}</h3>
               <p className="text-lightText text-sm dark:text-darkText">
-                @jamestxs9900
+                {user.user_data.nickname}
               </p>
               <p className="text-lightText dark:text-darkText text-sm">
-                {date_joined()}
+                {joined}
               </p>
               <p className="text-sm bg-green-100 dark:bg-secondaryGreen dark:text-white text-[11px] p-1 my-2 rounded-md w-24 text-center">
-                free tier
+                {user.user_data.tier == 0 ? "free tier" :user.user_data.tier == 1 ? 'montly tier':'lifetime'}
               </p>
               <div className="flex gap-2 items-center justify-items-start rounded-md text-sm w-[150px] mt-1 text-mainColor ">
                 <FiUserPlus /> <span>80K followers</span>
@@ -117,9 +110,10 @@ const Page = async () => {
           </div>
         </div>
       </div>
-      <Profileactions email_verified={user.user.email_verified} />
+      <Profileactions expiry={expiry} email_verified={user.user.email_verified} />
       <Mainfeature />
       <Articles />
+      {/* <Profileedit/> */}
     </div>
   );
 };
